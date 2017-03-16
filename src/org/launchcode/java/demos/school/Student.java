@@ -6,10 +6,13 @@ package org.launchcode.java.demos.school;
 public class Student {
     private static int nextStudentId = 1;
     private String name;
-    private int studentID;
+    private final int studentID;
     private int numberOfCredits;
     private double gpa;
 
+    public Student (int studentID){
+        this.studentID = studentID;
+    }
 
     public String getName(){
         return name;
@@ -21,10 +24,6 @@ public class Student {
 
     public int getStudentID(){
         return studentID;
-    }
-
-    private void setStudentID(int aStudentID){
-        studentID = aStudentID;
     }
 
     public int getNumberOfCredits(){
@@ -44,10 +43,10 @@ public class Student {
     }
 
     public Student(String name, int studentID, int numberOfCredits, double gpa){
-        setName(name);
-        setStudentID(studentID);
-        setNumberOfCredits(numberOfCredits);
-        setGpa(gpa);
+        this.name = name;
+        this.studentID = studentID;
+        this.numberOfCredits = numberOfCredits;
+        this.gpa = gpa;
     }
 
     public Student(String name, int studentID){
@@ -85,26 +84,28 @@ public class Student {
         if (currentCredits <= 29){
             gradeLevel = "Freshman";
         }
-        if(currentCredits >= 30 && currentCredits <= 59){
-            gradeLevel = "Sophomore";
-        }
-        if(currentCredits >= 60 && currentCredits <= 89){
-            gradeLevel = "Junior";
-        }
-        if(currentCredits >= 90 ){
-            gradeLevel = "Senior";
-        }
+            else if(currentCredits >= 30 && currentCredits <= 59){
+                gradeLevel = "Sophomore";
+            }
+            else if(currentCredits >= 60 && currentCredits <= 89){
+                gradeLevel = "Junior";
+            }
+            else{
+                gradeLevel = "Senior";
+            }
         return gradeLevel;
     }
+
     @Override
     public boolean equals(Object o){
         return ((Student) o).getStudentID() == getStudentID();
     }
+
     @Override
     public String toString(){
-        return "Name: " + this.getName() + " GPA: " + this.getGpa() +
-                " Student ID: " + this.getStudentID() + "Grade Level: " +
-                this.getGradeLevel() + "Number Of Credits: " + this.getNumberOfCredits();
+        return "Name: " + this.name + " GPA: " + this.gpa +
+                " Student ID: " + this.studentID + "Grade Level: " +
+                this.getGradeLevel() + "Number Of Credits: " + this.numberOfCredits;
     }
 }
 

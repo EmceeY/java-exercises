@@ -15,6 +15,7 @@ public class Area {
             System.out.println("Enter a radius:");
             String prompt = scanner.next();
             Double radius2 = Double.parseDouble(prompt);
+            // or just scanner.nextDouble() instead of having to parse the String value;
                 if(radius2 < 0){
                     System.out.println("Please enter a non-negative number!");
                     break;
