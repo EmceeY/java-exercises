@@ -4,6 +4,7 @@ package org.launchcode.java.demos.school;
  * Created by mcoreyyares on 3/13/17.
  */
 public class Student {
+    private static int nextStudentId = 1;
     private String name;
     private int studentID;
     private int numberOfCredits;
@@ -40,6 +41,70 @@ public class Student {
 
     private void setGpa(double aGpa){
         gpa = aGpa;
+    }
+
+    public Student(String name, int studentID, int numberOfCredits, double gpa){
+        setName(name);
+        setStudentID(studentID);
+        setNumberOfCredits(numberOfCredits);
+        setGpa(gpa);
+    }
+
+    public Student(String name, int studentID){
+        this(name, studentID,0 ,0);
+    }
+
+    public Student(String name){
+        this(name, nextStudentId);
+        nextStudentId++;
+    }
+
+    public void addGrade(int courseCredits, double grade){
+
+        int currentCredits = this.getNumberOfCredits();
+
+        int newCredits = currentCredits + courseCredits;
+
+        double currentQualityScore = this.getGpa() * this.getNumberOfCredits();
+
+        double newQualityScore = (grade * courseCredits) + currentQualityScore;
+
+        this.setNumberOfCredits(newCredits);
+
+        double newGpa = newQualityScore / newCredits;
+
+        this.setGpa(newGpa);
+
+    }
+
+    public String getGradeLevel(){
+        int currentCredits = this.getNumberOfCredits();
+
+        String gradeLevel = new String();
+
+        if (currentCredits <= 29){
+            gradeLevel = "Freshman";
+        }
+        if(currentCredits >= 30 && currentCredits <= 59){
+            gradeLevel = "Sophomore";
+        }
+        if(currentCredits >= 60 && currentCredits <= 89){
+            gradeLevel = "Junior";
+        }
+        if(currentCredits >= 90 ){
+            gradeLevel = "Senior";
+        }
+        return gradeLevel;
+    }
+    @Override
+    public boolean equals(Object o){
+        return ((Student) o).getStudentID() == getStudentID();
+    }
+    @Override
+    public String toString(){
+        return "Name: " + this.getName() + " GPA: " + this.getGpa() +
+                " Student ID: " + this.getStudentID() + "Grade Level: " +
+                this.getGradeLevel() + "Number Of Credits: " + this.getNumberOfCredits();
     }
 }
 

@@ -61,4 +61,23 @@ public class Course {
     private void setFinalGrades(Student aStudent){
         finalGrades.put(aStudent.getName(), aStudent.getGpa());
     }
+
+
+    @Override
+    public boolean equals(Object o){
+        return ((Course) o).getCourseDescription() == getCourseDescription();
+    }
+
+    @Override
+    public String toString() {
+        return "Course{" +
+                "courseName='" + courseName + '\'' +
+                ", courseDescription='" + courseDescription + '\'' +
+                ", credits=" + credits +
+                ", gpaWeight=" + gpaWeight +
+                ", classRoster=" + classRoster +
+                ", finalGrades=" + finalGrades +
+                '}';
+    }
+
 }
